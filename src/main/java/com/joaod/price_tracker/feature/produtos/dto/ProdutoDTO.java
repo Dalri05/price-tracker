@@ -11,6 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ProdutoDTO {
+    private Long id;
+
+    private String idMercadoLivre;
+
     private String nome;
 
     private Double precoDesejado;
@@ -23,6 +27,8 @@ public class ProdutoDTO {
 
     public static ProdutoDTO from(Produto produto) {
         return ProdutoDTO.builder()
+                .id(produto.getId())
+                .idMercadoLivre(produto.getIdMercadoLivre())
                 .nome(produto.getNome())
                 .precoAtual(produto.getPrecoAtual())
                 .precoDesejado(produto.getPrecoDesejado())
