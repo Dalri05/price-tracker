@@ -1,6 +1,6 @@
 package com.joaod.price_tracker.feature.mercadoLivre.client;
 
-import com.joaod.price_tracker.feature.mercadoLivre.dto.MercadoLivreProductDTO;
+import com.joaod.price_tracker.feature.mercadoLivre.model.MercadoLivreProductModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,12 +22,12 @@ public class MercadoLivreClient {
                 .build();
     }
 
-    public Mono<MercadoLivreProductDTO> consultarProdutoPorId(String idProdutoMl) {
+    public Mono<MercadoLivreProductModel> consultarProdutoPorId(String idProdutoMl) {
         return webClient
                 .get()
                 .uri("/items/{id}", idProdutoMl)
                 .retrieve()
-                .bodyToMono(MercadoLivreProductDTO.class)
+                .bodyToMono(MercadoLivreProductModel.class)
                 .doOnNext(produto ->
                         log.info("Produto encontrado no ML: {} por R${}", produto.getTitle(), produto.getPrice())
                 )
